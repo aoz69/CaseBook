@@ -7,7 +7,7 @@ public class Users {
     private String passowrd;
 
 
-    public Users(String name, String email, String passowrd) { //constructor
+    public Users(String userCurString, String string, String name) { //constructor
         this.name = name;
         this.email = email;
         this.passowrd = passowrd;
@@ -37,12 +37,5 @@ public class Users {
         this.passowrd = passowrd;
     }
 
-    @Override
-    public String toString() { //String method created
-        return "Users{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", passowrd='" + passowrd + '\'' +
-                '}';
-    }
+
 }

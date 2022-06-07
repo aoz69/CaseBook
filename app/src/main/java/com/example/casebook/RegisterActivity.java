@@ -2,6 +2,7 @@ package com.example.casebook;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,9 +37,14 @@ public class RegisterActivity extends AppCompatActivity {
                 emailreg.setText("");
                 namereg.setText("");
                 passwordreg.setText("");
-
+                change();
             }
         });
 
+    }
+
+    private void change() {
+        Intent intent = new Intent(this, ShowUsers.class);
+        startActivity(intent);
     }
 }

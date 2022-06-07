@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class database extends SQLiteOpenHelper {
 
     private static final String databaseName = "dbapp";
@@ -47,22 +49,36 @@ public class database extends SQLiteOpenHelper {
         database.close();
     }
 
+    public ArrayList<Users> getUsers(){ // for reading all users from the table
+        // creates a new database for retrieving the information
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        //cursor for reading the data
+        Cursor userCur = database.rawQuery("SELECT * FROM USERS", null);
+
+        //creates a new array
+        ArrayList<Users> usersArrayList = new ArrayList<>();
+
+        if(userCur.moveToFirst()){ // moves cursor to 1st place
+            do{
+                usersArrayList.add(new Users(
+                        userCur.getString(1),
+                        userCur.getString(2),
+                        userCur.getString(3)));
+            }
+
+            while (userCur.moveToNext()); //moves next from 1st
+        }
+
+        userCur.close(); // closed cursor
+        return usersArrayList; // returns user array list that we created above
+    }
+
 
     public Cursor showUsers(String email) { //ID ID ID
         SQLiteDatabase database = this.getReadableDatabase();
         return database.rawQuery("SELECT * FROM USERS WHERE email = ?" , new String[] {email});
     }
-
-
-
-    /*
-    cursor lai read garna
-    database db = new database(this);
-    Cursor cursor = db.showUsers(String email);
-    (VARIABLE)cursor.movetofirst();
-    name = cursor.getString(cursor.getColulmnIndexOrThrow("Name"); //name leu
-    */
-
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
