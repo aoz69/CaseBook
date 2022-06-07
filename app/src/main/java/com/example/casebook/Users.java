@@ -6,13 +6,6 @@ public class Users {
     private String email;
     private String passowrd;
 
-
-    public Users(String userCurString, String string, String name) { //constructor
-        this.name = name;
-        this.email = email;
-        this.passowrd = passowrd;
-    }
-
     public String getName() { //getter
         return name;
     }
@@ -37,5 +30,10 @@ public class Users {
         this.passowrd = passowrd;
     }
 
+    public Users(String name, String email, String password) { //constructor
+        this.name = name;
+        this.email = email;
+        this.passowrd = passowrd;
+    }
 
 }

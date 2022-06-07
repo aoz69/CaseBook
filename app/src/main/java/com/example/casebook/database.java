@@ -31,8 +31,9 @@ public class database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String q = " CREATE TABLE USERS" +
-                "(" + for_name + " TEXT ," + for_email + " TEXT, " + for_pass  + " TEXT )";
+//        String q = " CREATE TABLE USERS" +
+//                "(" + for_name + " TEXT ," + for_email + " TEXT, " + for_pass  + " TEXT )";
+        String q = " CREATE TABLE USERS (Name TEXT ,Email TEXT ,Password TEXT)";
 
         db.execSQL(q);
     }
@@ -45,11 +46,11 @@ public class database extends SQLiteOpenHelper {
         data.put(for_name , name);
         data.put(for_pass , password);
 
-        database.insert(table , null , data);
+        database.insert(table , null , data); //TODO: insert lai update banau add lau update banau
         database.close();
     }
 
-    public ArrayList<Users> getUsers(){ // for reading all users from the table
+    public ArrayList<Users> readUsers(){ // for reading all users from the table
         // creates a new database for retrieving the information
         SQLiteDatabase database = this.getReadableDatabase();
 
@@ -62,9 +63,9 @@ public class database extends SQLiteOpenHelper {
         if(userCur.moveToFirst()){ // moves cursor to 1st place
             do{
                 usersArrayList.add(new Users(
+                        userCur.getString(0),
                         userCur.getString(1),
-                        userCur.getString(2),
-                        userCur.getString(3)));
+                        userCur.getString(2)));
             }
 
             while (userCur.moveToNext()); //moves next from 1st
@@ -75,15 +76,15 @@ public class database extends SQLiteOpenHelper {
     }
 
 
-    public Cursor showUsers(String email) { //ID ID ID
-        SQLiteDatabase database = this.getReadableDatabase();
-        return database.rawQuery("SELECT * FROM USERS WHERE email = ?" , new String[] {email});
-    }
+//    public Cursor showUsers(String email) { //ID ID ID
+//        SQLiteDatabase database = this.getReadableDatabase();
+//        return database.rawQuery("SELECT * FROM USERS WHERE email = ?" , new String[] {email});
+//    }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         // check if the table already exists nad drop if it does
-        database.execSQL("DROP TABLE IF EXISTS " +table);
+        database.execSQL("DROP TABLE IF EXISTS USERS");
         onCreate(database);
     }
 

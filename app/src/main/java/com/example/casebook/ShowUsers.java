@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -24,13 +25,16 @@ public class ShowUsers extends AppCompatActivity {
         usersView = new ArrayList<>(); //initialize userView
         dbs = new database(ShowUsers.this); // initialize dbs
 
-        usersView = dbs.getUsers(); // read users array
+        usersView = dbs.readUsers(); // read users array
+        Log.e("", "onCreate: "+ usersView.size());
         // passing array list to the adapter
         userAdapter = new userRecycleView(usersView,ShowUsers.this);
         userRV = findViewById(R.id.userShow);
 
         //layout manager
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ShowUsers.this, RecyclerView.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         userRV.setLayoutManager(linearLayoutManager);
+
+        userRV.setAdapter(userAdapter);
     }
 }

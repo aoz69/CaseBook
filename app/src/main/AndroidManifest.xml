@@ -21,9 +21,7 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
-        <activity
-            android:name=".userInfo"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
