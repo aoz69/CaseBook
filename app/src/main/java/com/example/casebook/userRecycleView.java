@@ -27,8 +27,9 @@ public class userRecycleView extends RecyclerView.Adapter<userRecycleView.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.);
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_list, parent , false); // attach view object into user list
+        ViewHolder holdItems = new ViewHolder(view); //creating new  view holder
+        return holdItems;                                                                                                     //in order to pass the view group and avoid redundancy
     }
 
     @Override
