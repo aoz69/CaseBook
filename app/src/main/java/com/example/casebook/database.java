@@ -66,18 +66,6 @@ public class database extends SQLiteOpenHelper {
         //creates a new array
         ArrayList<Users> usersArrayList = parseUserData(userCur);
 
-//        if(userCur.moveToFirst()){ // moves cursor to 1st place
-//            do{
-//                usersArrayList.add(new Users(
-//                        userCur.getString(0),
-//                        userCur.getString(1),
-//                        userCur.getString(2)));
-//            }
-//
-//            while (userCur.moveToNext()); //moves next from 1st
-//        }
-//
-//        userCur.close(); // closed cursor
         return usersArrayList; // returns user array list that we created above
     }
 
@@ -87,16 +75,21 @@ public class database extends SQLiteOpenHelper {
      * @return
      */
 
-    public ArrayList<Users> getUserByEmail(String email) {
+    public Users getUserByEmail(String email) {
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor userCur = database.rawQuery("SELECT * FROM USERS WHERE email=?", new String[] {email});
-        return parseUserData(userCur);
+        if(userCur.getCount()>0){
+        return parseUserData(userCur).get(0);
+        }
+        else {
+            return null;
+        }
     }
 
     /**
      *
      * @param userCur
-     * @return array liste of users from that cursor
+     * @return array list of users from that cursor
      *  USE THIS METHOD TO PARSE ALL THE DATA FROM CURSOR
      */
 

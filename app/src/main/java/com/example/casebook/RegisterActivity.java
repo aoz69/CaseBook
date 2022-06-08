@@ -31,7 +31,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = emailreg.getText().toString(); // get text user input in email
                 String name = namereg.getText().toString();// get text user input in name
                 String password= passwordreg.getText().toString();// get text user input in password
-
+                if(dbr.getUserByEmail(email)!=null) { // check if email already exists
+                    Toast.makeText(RegisterActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 dbr.addUsers(email , name , password);
                 Toast.makeText(RegisterActivity.this, "Course has been added.", Toast.LENGTH_SHORT).show();
                 emailreg.setText("");
