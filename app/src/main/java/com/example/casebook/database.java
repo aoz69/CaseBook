@@ -16,6 +16,8 @@ public class database extends SQLiteOpenHelper {
 
     private static final String table = "USERS";
 
+    private static final String for_id = "id";
+
     private static final String for_name ="Name";
 
     private static final String for_email = "Email";
@@ -29,10 +31,19 @@ public class database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String q = " CREATE TABLE USERS (Name TEXT ,Email TEXT ,Password TEXT)";
+//        String q = " CREATE TABLE USERS" +
+//                "(" + for_name + " TEXT ," + for_email + " TEXT, " + for_pass  + " TEXT )";
+        String q = " CREATE TABLE USERS (Name TEXT ,Email TEXT primary key ,Password TEXT)";
+
         db.execSQL(q);
     }
 
+    /**
+     * CHECK EMAIL EXISTS WITH getUserBYEmail() before adding!!!
+     * @param email
+     * @param name
+     * @param password
+     */
 
     public void addUsers(String email, String name , String password){
         SQLiteDatabase database = this.getWritableDatabase();
@@ -53,6 +64,44 @@ public class database extends SQLiteOpenHelper {
         Cursor userCur = database.rawQuery("SELECT * FROM USERS", null);
 
         //creates a new array
+        ArrayList<Users> usersArrayList = parseUserData(userCur);
+
+//        if(userCur.moveToFirst()){ // moves cursor to 1st place
+//            do{
+//                usersArrayList.add(new Users(
+//                        userCur.getString(0),
+//                        userCur.getString(1),
+//                        userCur.getString(2)));
+//            }
+//
+//            while (userCur.moveToNext()); //moves next from 1st
+//        }
+//
+//        userCur.close(); // closed cursor
+        return usersArrayList; // returns user array list that we created above
+    }
+
+    /**
+     * USED FOR LOGIN
+     * @param email
+     * @return
+     */
+
+    public ArrayList<Users> getUserByEmail(String email) {
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor userCur = database.rawQuery("SELECT * FROM USERS WHERE email=?", new String[] {email});
+        return parseUserData(userCur);
+    }
+
+    /**
+     *
+     * @param userCur
+     * @return array liste of users from that cursor
+     *  USE THIS METHOD TO PARSE ALL THE DATA FROM CURSOR
+     */
+
+    public ArrayList<Users> parseUserData(Cursor userCur) {
+        //creates a new array
         ArrayList<Users> usersArrayList = new ArrayList<>();
 
         if(userCur.moveToFirst()){ // moves cursor to 1st place
@@ -70,6 +119,11 @@ public class database extends SQLiteOpenHelper {
         return usersArrayList; // returns user array list that we created above
     }
 
+
+//    public Cursor showUsers(String email) { //ID ID ID
+//        SQLiteDatabase database = this.getReadableDatabase();
+//        return database.rawQuery("SELECT * FROM USERS WHERE email = ?" , new String[] {email});
+//    }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
