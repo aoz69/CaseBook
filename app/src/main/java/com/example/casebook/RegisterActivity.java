@@ -28,23 +28,23 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = emailreg.getText().toString();
-                String name = namereg.getText().toString();
-                String password= passwordreg.getText().toString();
+                String email = emailreg.getText().toString(); // get text user input in email
+                String name = namereg.getText().toString();// get text user input in name
+                String password= passwordreg.getText().toString();// get text user input in password
 
                 dbr.addUsers(email , name , password);
                 Toast.makeText(RegisterActivity.this, "Course has been added.", Toast.LENGTH_SHORT).show();
                 emailreg.setText("");
                 namereg.setText("");
                 passwordreg.setText("");
-                change();
+                change(); // calling new activity
             }
         });
 
     }
 
-    private void change() {
-        Intent intent = new Intent(this, ShowUsers.class);
+    private void change() { // change activity function
+        Intent intent = new Intent(this, ShowUsers.class); // changes activity to ShowUser
         startActivity(intent);
     }
 }

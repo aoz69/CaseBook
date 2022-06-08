@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
+    database db;
     TextView register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button submit = findViewById(R.id.submit);
         register = findViewById(R.id.RegHere);
-
+        db = new database(this);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 change();
 
             }

@@ -2,9 +2,9 @@ package com.example.casebook;
 
 public class Users {
 
-    private String name;
-    private String email;
-    private String passowrd;
+    public String name;
+    public String email;
+    public String passowrd;
 
     public String getName() { //getter
         return name;

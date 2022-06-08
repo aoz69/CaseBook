@@ -34,8 +34,8 @@ public class userRecycleView extends RecyclerView.Adapter<userRecycleView.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Users set = usersArray.get(position); // get position
         holder.name.setText(set.getName());//set text of name
-//        holder.email.setText(set.getEmail()); //set text of email
-//        holder.password.setText(set.getPassowrd()); //set text of passowrd
+        holder.email.setText(set.getEmail()); //set text of email
+        holder.password.setText(set.getPassowrd()); //set text of passowrd
     }
 
     @Override
@@ -47,12 +47,12 @@ public class userRecycleView extends RecyclerView.Adapter<userRecycleView.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         //for accessing the elements
-        private TextView name, email, password;
+        public TextView name, email, password;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.userList); //to find id from items passed
-//            email = itemView.findViewById(R.id.emailDisplay);
-//            password = itemView.findViewById(R.id.passwordDisplay);
+            name = itemView.findViewById(R.id.nameList); //to find id from items passed
+            email = itemView.findViewById(R.id.emailList);
+            password = itemView.findViewById(R.id.passList);
         }
     }
 

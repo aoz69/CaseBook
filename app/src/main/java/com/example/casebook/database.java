@@ -16,8 +16,6 @@ public class database extends SQLiteOpenHelper {
 
     private static final String table = "USERS";
 
-    private static final String for_id = "id";
-
     private static final String for_name ="Name";
 
     private static final String for_email = "Email";
@@ -31,10 +29,7 @@ public class database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-//        String q = " CREATE TABLE USERS" +
-//                "(" + for_name + " TEXT ," + for_email + " TEXT, " + for_pass  + " TEXT )";
         String q = " CREATE TABLE USERS (Name TEXT ,Email TEXT ,Password TEXT)";
-
         db.execSQL(q);
     }
 
@@ -75,11 +70,6 @@ public class database extends SQLiteOpenHelper {
         return usersArrayList; // returns user array list that we created above
     }
 
-
-//    public Cursor showUsers(String email) { //ID ID ID
-//        SQLiteDatabase database = this.getReadableDatabase();
-//        return database.rawQuery("SELECT * FROM USERS WHERE email = ?" , new String[] {email});
-//    }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
