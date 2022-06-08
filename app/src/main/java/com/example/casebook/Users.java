@@ -2,9 +2,11 @@ package com.example.casebook;
 
 public class Users {
 
+    // for users
     public String name;
     public String email;
     public String passowrd;
+
 
     public String getName() { //getter
         return name;
@@ -30,7 +32,7 @@ public class Users {
         this.passowrd = passowrd;
     }
 
-    public Users(String name, String email, String password) { //constructor
+    public Users(String name, String email, String passowrd) { //constructor
         this.name = name;
         this.email = email;
         this.passowrd = passowrd;

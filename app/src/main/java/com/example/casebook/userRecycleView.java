@@ -35,7 +35,7 @@ public class userRecycleView extends RecyclerView.Adapter<userRecycleView.ViewHo
         Users set = usersArray.get(position); // get position
         holder.name.setText(set.getName());//set text of name
         holder.email.setText(set.getEmail()); //set text of email
-        holder.password.setText(set.getPassowrd()); //set text of passowrd
+        holder.password.setText(set.getPassowrd()); //set text of password
     }
 
     @Override

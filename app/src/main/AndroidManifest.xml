@@ -16,12 +16,20 @@
         android:theme="@style/Theme.Casebook"
         tools:targetApi="31">
         <activity
+            android:name=".TimeLine"
+            android:exported="false" />
+        <activity
+            android:name=".show_comment"
+            android:exported="false" />
+        <activity
+            android:name=".comment_list"
+            android:exported="false" />
+        <activity
             android:name=".ShowUsers"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">

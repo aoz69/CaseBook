@@ -26,7 +26,6 @@ public class ShowUsers extends AppCompatActivity {
         dbs = new database(ShowUsers.this); // initialize dbs
 
         usersView = dbs.readUsers(); // read users array
-        Log.e("", "onCreate: "+ usersView.size());
         // passing array list to the adapter
         userAdapter = new userRecycleView(usersView,ShowUsers.this);
         userRV = findViewById(R.id.userShow);
@@ -34,7 +33,6 @@ public class ShowUsers extends AppCompatActivity {
         //layout manager
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         userRV.setLayoutManager(linearLayoutManager);
-
         userRV.setAdapter(userAdapter);
     }
 }
