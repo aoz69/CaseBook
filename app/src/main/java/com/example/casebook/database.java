@@ -18,7 +18,7 @@ public class database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
 
         String q = " CREATE TABLE USERS (Name TEXT ,Email TEXT primary key ,Password TEXT)";
-        String qu = " CREATE TABLE COMMENT (ID TEXT primary key , Name TEXT , Comment TEXT )";
+        String qu = " CREATE TABLE COMMENT (ID TEXT primary key , Name TEXT , Comment TEXT, Email TEXT ,FOREIGN KEY(Email) REFERENCES USERS(Email)  )";
         db.execSQL(q);
         db.execSQL(qu);
 
@@ -37,16 +37,15 @@ public class database extends SQLiteOpenHelper {
         data.put("Email" , email);
         data.put("Name" , name);
         data.put("Password" , password);
-
         database.insert("USERS" , null , data); //TODO: insert lai update banau add lau update banau
         database.close();
     }
 
-    public void addComment(String comment){
+    public void addComment(String comment, String email){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues data = new ContentValues();
         data.put("Comment" , comment);
-//        data.put("Name" , name);
+//        data.put("Email" , email);
         database.insert("COMMENT" , null , data); //TODO: insert lai update banau add lau update banau
         database.close();
     }
@@ -73,7 +72,6 @@ public class database extends SQLiteOpenHelper {
 
         //creates a new array
         ArrayList<Comment> commentArrayList = parseCommentData(cmtCur);
-
         return commentArrayList; // returns user array list that we created above
     }
 
@@ -92,7 +90,6 @@ public class database extends SQLiteOpenHelper {
         else {
             return null;
         }
-
     }
 
     /**

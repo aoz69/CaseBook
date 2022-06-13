@@ -15,27 +15,24 @@ public class TimeLine extends AppCompatActivity {
 
 
     public EditText comment;
-    public Button post;
+    public Button sharp;
     public database dbr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        comment = findViewById(R.id.commentTxt);
-        post = findViewById(R.id.post);
         setContentView(R.layout.activity_time_line);
-
-        post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String cmt = comment.getText().toString();
-                dbr.addComment(cmt);
-                change();
-            }
+        comment = findViewById(R.id.commentTxt);
+        sharp = findViewById(R.id.postt);
+        dbr=new database(TimeLine.this);
+        sharp.setOnClickListener(view -> {
+            String cmt = comment.getText().toString();
+            dbr.addComment(cmt, "");
+            change();
         });
     }
     private void change() { // change activity function
-        Intent intent = new Intent(this, ShowUsers.class); // changes activity to ShowUser
+        Intent intent = new Intent(this, show_comment.class); // changes activity to ShowUser
         startActivity(intent);
     }
 }
