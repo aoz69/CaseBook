@@ -9,8 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.Date;
 
-import kotlin.text.UStringsKt;
-
 public class database extends SQLiteOpenHelper {
 
     public database(Context context) {

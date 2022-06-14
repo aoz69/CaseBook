@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void change(String email) {
-        Intent intent = new Intent(this, HomePage.class);
+        Intent intent = new Intent(this, AddComment.class);
         intent.putExtra("email" , email);
         startActivity(intent);
     }

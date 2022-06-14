@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -26,7 +25,7 @@ public class show_comment extends AppCompatActivity {
         commentView = dbs.readComment(); // read users array
         // passing array list to the adapter
 
-        commentAdapter = new CommentAdapter(commentView, show_comment.this);
+        commentAdapter = new CommentAdapter(commentView, this);
         commentRV = findViewById(R.id.commentShow);
 
         //layout manager

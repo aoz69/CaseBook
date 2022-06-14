@@ -46,6 +46,7 @@ public class OwnCommentAdapter extends RecyclerView.Adapter<OwnCommentAdapter.Vi
             intent.putExtra("id", set.getId());
             context.startActivity(intent);
         });
+
     }
 
     @Override

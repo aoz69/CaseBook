@@ -7,8 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.concurrent.CompletionException;
-
 public class EditComment extends AppCompatActivity {
 
     private EditText edit;

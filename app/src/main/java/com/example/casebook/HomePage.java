@@ -8,11 +8,7 @@ import android.widget.Button;
 
 public class HomePage extends AppCompatActivity {
 
-    private Button ShowOwnComment;
-    private Button ShowComment;
-    private Button ShowUsers;
-
-
+    private Button ShowOwnComment, ShowComment, ShowUsers, cmtAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,32 +16,42 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         ShowUsers = findViewById(R.id.ShowUsers);
         ShowComment = findViewById(R.id.ShowComment);
+        cmtAdd = findViewById(R.id.addComment);
         ShowOwnComment = findViewById(R.id.ShowOwnComment);
-
+        Intent intent = new Intent();
+        String email = intent.getStringExtra("email");
         ShowUsers.setOnClickListener(view -> {
-            user();
+            user(email);
         });
         ShowOwnComment.setOnClickListener(view -> {
-            oComment();
+            oComment(email);
         });
         ShowComment.setOnClickListener(view -> {
-            allComment();
+            allComment(email);
+        });
+        cmtAdd.setOnClickListener(view -> {
+            addCmt(email);
         });
     }
 
-    private void allComment() {
+    private void addCmt(String email) {
+        Intent intent = new Intent(this, AddComment.class);
+        startActivity(intent);
+    }
+
+    private void allComment(String email) {
         Intent intent = new Intent (this, show_comment.class);
         startActivity(intent);
     }
 
-    private void oComment() {
+    private void oComment(String email) {
         Intent intent = new Intent (this, OwnComment.class);
         startActivity(intent);
     }
 
-    private void user() {
+    private void user(String email) {
         Intent intent = new Intent (this, ShowUsers.class);
+
         startActivity(intent);
-        
     }
 }

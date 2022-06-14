@@ -29,7 +29,7 @@ public class Comment {
     }
 
 
-    public Comment(int id,String comment,String date, Users user){
+    public Comment(int id, String comment, String date, Users user){
         this.id = id;
         this.comment = comment;
         this.date = date;
