@@ -3,29 +3,36 @@ package com.example.casebook;
 public class Comment {
 
     //for comments
-    public String comment;
-    public String Name;
-            ;
+    private String comment;
+    private Users user;
+    private int id;
+    private String date;
+
     public String getComment() {
         return comment;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public void setComment(String comment){
         this.comment = comment;
     }
 
     public String getName() {
-        return comment;
+        return user.getName();
     }
 
 
-    public void setName(String Name){
-        this.Name = Name;
-    }
-
-    public Comment(String string, String comment, String Name){
+    public Comment(int id,String comment,String date, Users user){
+        this.id = id;
         this.comment = comment;
-        this.Name = Name;
+        this.date = date;
+        this.user = user;
     }
 }

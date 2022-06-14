@@ -10,14 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-public class CommentRecycle extends RecyclerView.Adapter<CommentRecycle.ViewHolder> { //constructor
+public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> { //constructor
 
     private ArrayList<Comment> commentArray = new ArrayList<>();
     //variable of array list for various comment
     private Context context; //context variable
 
-    public CommentRecycle(ArrayList<Comment> commentArray, Context context) { // constructor
+    public CommentAdapter(ArrayList<Comment> commentArray, Context context) { // constructor
         this.commentArray = commentArray;
         this.context = context;
     }
@@ -25,14 +26,16 @@ public class CommentRecycle extends RecyclerView.Adapter<CommentRecycle.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_show, parent, false); // attach view object into user list
-        return new com.example.casebook.CommentRecycle.ViewHolder(view); //file for recycler view
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_comment, parent, false); // attach view object into user list
+        return new CommentAdapter.ViewHolder(view); //file for recycler view
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Comment set = commentArray.get(position); // get position
-        holder.comment.setText(set.getComment());//set text of name
+        holder.comment.setText(set.getName()+ "\n" + set.getComment() + "\n" + set.getDate());//set text of name
+//        holder.comment.setText(set.getName());//set text of name
+//        holder.date.setText(set.getDate());//set text of name
     }
 
     @Override
@@ -43,10 +46,13 @@ public class CommentRecycle extends RecyclerView.Adapter<CommentRecycle.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
         //for accessing the elements
         public TextView comment;
-
+//        public TextView Name;
+        public TextView date;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             comment = itemView.findViewById(R.id.commentList); //to find id from items passed
+//            date = itemView.findViewById(R.id.)
+//            NAME = itemView.findViewById(R.id.NameList); //to find id from items passed
         }
     }
 }

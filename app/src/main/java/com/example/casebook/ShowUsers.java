@@ -1,12 +1,10 @@
 package com.example.casebook;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -14,7 +12,7 @@ public class ShowUsers extends AppCompatActivity {
 
     private ArrayList<Users> usersView;
     private database dbs;
-    private userRecycleView userAdapter;
+    private UserAdapter userAdapter;
     private RecyclerView userRV;
 
     @Override
@@ -27,7 +25,7 @@ public class ShowUsers extends AppCompatActivity {
 
         usersView = dbs.readUsers(); // read users array
         // passing array list to the adapter
-        userAdapter = new userRecycleView(usersView,ShowUsers.this);
+        userAdapter = new UserAdapter(usersView,ShowUsers.this);
         userRV = findViewById(R.id.userShow);
 
         //layout manager

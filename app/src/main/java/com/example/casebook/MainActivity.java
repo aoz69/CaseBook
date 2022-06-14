@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                change();
+                change(em);
 
 
             }
@@ -63,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void change() {
-        Intent intent = new Intent(this, TimeLine.class);
+    private void change(String email) {
+        Intent intent = new Intent(this, HomePage.class);
+        intent.putExtra("email" , email);
         startActivity(intent);
     }
 }
