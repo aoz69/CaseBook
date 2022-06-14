@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.783" />
 
     <Button
-        android:id="@+id/showComment"
+        android:id="@+id/ShowComment"
         android:layout_width="157dp"
         android:layout_height="53dp"
         android:text="Show Comments"
@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.936" />
 
     <Button
-        android:id="@+id/showUsers"
+        android:id="@+id/ShowUsers"
         android:layout_width="157dp"
         android:layout_height="53dp"
         android:text="Show Users"

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,13 +30,15 @@ public class database extends SQLiteOpenHelper {
     public void addUsers(String email, String name , String password){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues data = new ContentValues();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date());
         if (getUserByEmail(email) !=null ){ //CHECK EMAIL EXISTS before adding!!!
             return;
         }
         data.put("Email" , email);
         data.put("Name" , name);
         data.put("Password" , password);
-        data.put("Date" , new Date().toString());
+        data.put("Date" , date);
         database.insert("USERS" , null , data);
         database.close();
     }
@@ -43,26 +46,30 @@ public class database extends SQLiteOpenHelper {
     public void UpdateUsers(String email, String name , String password){ //update User
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues data = new ContentValues();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date());
         data.put("Name" , name);
         data.put("Password" , password);
-        data.put("UDate" , new Date().toString());
-        database.update("USERS" , data , "where email =?" , new String[]{email});
+        data.put("UDate" , date);
+        database.update("USERS" , data , "email =?" , new String[]{email});
         database.close();
     }
 
     public void DeleteUsers(String email){ // delete users
         SQLiteDatabase database = this.getWritableDatabase();
        /** DeleteCommentofUser(email); // deletes user comment also**/
-        database.delete("USERS" , "WHERE email = ?" , new String[] {email});
+        database.delete("USERS" , "email = ?" , new String[] {email});
         database.close();
     }
 
     public void addComment(String comment, String email){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues data = new ContentValues();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date());
         data.put("Comment" , comment);
         data.put("Email" , email);
-        data.put("Date" , new Date().toString());
+        data.put("Date" , date);
         database.insert("COMMENT" , null , data);
         database.close();
     }
@@ -82,13 +89,13 @@ public class database extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues data = new ContentValues();
         data.put("Comment" , comment);
-        database.update("COMMENT" , data , "WHERE id = ?" , new String[]{id+""} );
+        database.update("COMMENT" , data , "id =?" , new String[]{id+""} );
         database.close();
     }
 
     public void DeleteComment(int id){ // delete comment
         SQLiteDatabase database = this.getWritableDatabase();
-        database.delete("COMMENT" , "WHERE id = ?" , new String[] {id + ""});
+        database.delete("COMMENT" , "id =?" , new String[] {id + ""});
         database.close();
     }
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -15,14 +16,12 @@ public class OwnComment extends AppCompatActivity {
     private OwnCommentAdapter commentAdapter;
     private RecyclerView commentRV;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_comment);
         String email = getIntent().getStringExtra("email");
         dbs = new database(this); // initialize dbs
-
         commentView = dbs.getCommentByUser(email); // read users array
         // passing array list to the adapter
 
