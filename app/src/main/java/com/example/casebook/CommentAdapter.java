@@ -25,16 +25,14 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_show, parent, false); // attach view object into user list
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_comment, parent, false); // attach view object into user list
         return new CommentAdapter.ViewHolder(view); //file for recycler view
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Comment set = commentArray.get(position); // get position
-        holder.comment.setText(set.getName()+ " \n " + set.getComment() + " \n " + set.getDate());//set text of name
-/**     holder.comment.setText(set.getName());//set text of name
-        holder.date.setText(set.getDate());//set text of name **/
+        holder.comment.setText(set.getName()+ " \n " + set.getComment() + " \n " + set.getDate()+ " \n \n");//set text of name
     }
 
     @Override
@@ -49,7 +47,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         public TextView date;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            comment = itemView.findViewById(R.id.commentList); //to find id from items passed
+            comment = itemView.findViewById(R.id.commentListnor); //to find id from items passed
 //            date = itemView.findViewById(R.id.)
 //            NAME = itemView.findViewById(R.id.NameList); //to find id from items passed
         }

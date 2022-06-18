@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,24 +24,30 @@ public class AddComment extends AppCompatActivity {
         sharp = findViewById(R.id.postt);
         welcome = findViewById(R.id.welcome);
         dbr = new database(AddComment.this);
-        ShowUsers = findViewById(R.id.ShowUsers);
-        ShowComment = findViewById(R.id.ShowComment);
-        ShowOwnComment = findViewById(R.id.showOwnComment);
-
         String email = getIntent().getStringExtra("email");
         Users users = dbr.getUserByEmail(email);
         String name = users.name; //GETS NAME
-        welcome.setText("Welcome " + name + "!");
 
+        ShowUsers = findViewById(R.id.ShowUsers);
+        ShowComment = findViewById(R.id.ShowComment);
+        ShowOwnComment = findViewById(R.id.showOwnComment);
+        welcome.setText("Welcome " + name + "!");
         sharp.setOnClickListener(view -> {
             String cmt = comment.getText().toString();
             dbr.addComment(cmt, email);
             change(email);
         });
+        if(name.equals("admin")) {
+            ShowUsers.setVisibility(View.VISIBLE);
+        }
+        else{
+            ShowUsers.setVisibility(View.INVISIBLE);
+        }
 
         ShowUsers.setOnClickListener(view -> {
             user(email);
         });
+
         ShowOwnComment.setOnClickListener(view -> {
             oComment(email);
         });

@@ -17,7 +17,6 @@ public class EditComment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_comment);
-
         edit = findViewById(R.id.input);
         database = new database(EditComment.this);
         Comment cmt = database.getCommentById(getIntent().getIntExtra("id" , 0)); // id leko

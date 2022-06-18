@@ -25,7 +25,7 @@ public class Comment {
     }
 
     public String getName() {
-        return user.getName();
+         return user.getName();
     }
 
 

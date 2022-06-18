@@ -1,5 +1,6 @@
 package com.example.casebook;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 public class OwnCommentAdapter extends RecyclerView.Adapter<OwnCommentAdapter.ViewHolder>{
     private ArrayList<Comment> commentArray = new ArrayList<>();
     //variable of array list for various comment
-    private Context context; //context variable
+    private final Context context; //context variable
 
     public OwnCommentAdapter(ArrayList<Comment> commentArray, Context context) { // constructor
         this.commentArray = commentArray;
@@ -30,12 +31,12 @@ public class OwnCommentAdapter extends RecyclerView.Adapter<OwnCommentAdapter.Vi
         return new OwnCommentAdapter.ViewHolder(view); //file for recycler view
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull OwnCommentAdapter.ViewHolder holder, int position) {
         Comment set = commentArray.get(position); // get position
-        holder.comment.setText(set.getName()+ "\n" + set.getComment() + "\n" + set.getDate());//set text of name
-//        holder.comment.setText(set.getName());//set text of name
-//        holder.date.setText(set.getDate());//set text of name
+        holder.comment.setText(set.getName()+ "\n" + set.getComment() + "\n" + set.getDate()+ "\n \n");//set text of name
+
         database database= new database(context);
         holder.remove.setOnClickListener(view -> {
             database.DeleteComment(set.getId());
@@ -57,16 +58,13 @@ public class OwnCommentAdapter extends RecyclerView.Adapter<OwnCommentAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         //for accessing the elements
         public TextView comment;
-        //        public TextView Name;
-        public TextView date;
+        /**public TextView date;**/
         public Button remove, edit;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             comment = itemView.findViewById(R.id.commentList); //to find id from items passed
             remove = itemView.findViewById(R.id.delButton);
             edit = itemView.findViewById(R.id.editBtn);
-//            date = itemView.findViewById(R.id.)
-//            NAME = itemView.findViewById(R.id.NameList); //to find id from items passed
         }
     }
 }

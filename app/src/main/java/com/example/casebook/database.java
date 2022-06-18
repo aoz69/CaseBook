@@ -18,14 +18,11 @@ public class database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-
         String q = " CREATE TABLE USERS (Name TEXT ,Email TEXT primary key ,Password TEXT , Date TEXT, UDate TEXT)";
         String qu = " CREATE TABLE COMMENT (ID INTEGER primary key , Comment TEXT,Date TEXT, Email TEXT ,FOREIGN KEY(Email) REFERENCES USERS(Email)  )";
         db.execSQL(q);
         db.execSQL(qu);
-
     }
-
 
     public void addUsers(String email, String name , String password){
         SQLiteDatabase database = this.getWritableDatabase();
@@ -99,11 +96,11 @@ public class database extends SQLiteOpenHelper {
         database.close();
     }
 
-   /** public void DeleteCommentofUser(String email){ // delete comment
+   public void DeleteCommentofUser(String email){ // delete comment
         SQLiteDatabase database = this.getWritableDatabase();
-        database.delete("COMMENT" , "WHERE email = ?" , new String[] {email});
+        database.delete("COMMENT" , "email = ?" , new String[] {email});
         database.close();
-    }**/
+    }
 
 
     public ArrayList<Users> readUsers(){ // for reading all users from the table
@@ -190,7 +187,6 @@ public class database extends SQLiteOpenHelper {
 
         cmtCur.close(); // closed cursor
         return commentArrayList; // returns user array list that we created above
-
     }
 
     public Comment getCommentById(int id) {
