@@ -35,7 +35,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> { 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Users set = usersArray.get(position); // get position
-//        Comment sets = commentArray.get(position);
         holder.name.setText(set.getName());//set text of name
         holder.email.setText(set.getEmail()); //set text of email
         holder.password.setText(set.getDate() + "\n" + set.getUdate()+ "\n" +set.getPassowrd()); //set text of password
@@ -43,7 +42,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> { 
         holder.remove.setOnClickListener(view -> { //REMOVE USERS
             database.DeleteCommentofUser(set.email); //TODO:: Delete comment with deletation of user
             database.DeleteUsers(set.getEmail());
-
         });
     }
 

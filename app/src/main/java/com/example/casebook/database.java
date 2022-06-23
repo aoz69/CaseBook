@@ -19,7 +19,7 @@ public class database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db){
         String q = " CREATE TABLE USERS (Name TEXT ,Email TEXT primary key ,Password TEXT , Date TEXT, UDate TEXT)";
-        String qu = " CREATE TABLE COMMENT (ID INTEGER primary key , Comment TEXT,Date TEXT, Email TEXT ,FOREIGN KEY(Email) REFERENCES USERS(Email)  )";
+        String qu = " CREATE TABLE COMMENT (ID INTEGER primary key , Comment TEXT,Date TEXT, Email TEXT,Date TEXT, UDate TEXT ,FOREIGN KEY(Email) REFERENCES USERS(Email))";
         db.execSQL(q);
         db.execSQL(qu);
     }

@@ -40,6 +40,8 @@ public class OwnCommentAdapter extends RecyclerView.Adapter<OwnCommentAdapter.Vi
         database database= new database(context);
         holder.remove.setOnClickListener(view -> {
             database.DeleteComment(set.getId());
+            ((OwnComment)context).onRestart();
+
         });
 
         holder.edit.setOnClickListener(view -> {
@@ -68,3 +70,4 @@ public class OwnCommentAdapter extends RecyclerView.Adapter<OwnCommentAdapter.Vi
         }
     }
 }
+

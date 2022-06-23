@@ -32,7 +32,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Comment set = commentArray.get(position); // get position
-        holder.comment.setText(set.getName()+ " \n " + set.getComment() + " \n " + set.getDate()+ " \n \n");//set text of name
+        holder.comment.setText(set.getName()+" posted: " +set.getComment() + " \n " +"Uploaded on: "+ set.getDate()+ " \n \n");//set text of name
     }
 
     @Override

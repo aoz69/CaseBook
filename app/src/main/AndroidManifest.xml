@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Casebook"
         tools:targetApi="31">
         <activity
+            android:name=".Account"
+            android:exported="false" />
+        <activity
             android:name=".OwnComment"
             android:exported="false" />
         <activity

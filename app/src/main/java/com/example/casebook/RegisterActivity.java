@@ -40,14 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
                 emailreg.setText("");
                 namereg.setText("");
                 passwordreg.setText("");
-                change(); // calling new activity
             }
         });
 
-    }
-
-    private void change() { // change activity function
-        Intent intent = new Intent(this, ShowUsers.class); // changes activity to ShowUser
-        startActivity(intent);
     }
 }

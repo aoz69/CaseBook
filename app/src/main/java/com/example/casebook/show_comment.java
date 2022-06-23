@@ -3,6 +3,8 @@ package com.example.casebook;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -13,13 +15,14 @@ public class show_comment extends AppCompatActivity {
     private database dbs;
     private CommentAdapter commentAdapter;
     private RecyclerView commentRV;
+    String email;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_comment);
-        String email = getIntent().getStringExtra("email");
+        email = getIntent().getStringExtra("email");
         dbs = new database(show_comment.this); // initialize dbs
 
         commentView = dbs.readComment(); // read users array
@@ -33,4 +36,5 @@ public class show_comment extends AppCompatActivity {
         commentRV.setLayoutManager(linearLayoutManager);
         commentRV.setAdapter(commentAdapter);
     }
+
 }

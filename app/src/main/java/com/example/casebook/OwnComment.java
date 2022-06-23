@@ -15,14 +15,16 @@ public class OwnComment extends AppCompatActivity {
     private database dbs;
     private OwnCommentAdapter commentAdapter;
     private RecyclerView commentRV;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_comment);
-        String email = getIntent().getStringExtra("email");
+        email = getIntent().getStringExtra("email");
         dbs = new database(this); // initialize dbs
         commentView = dbs.getCommentByUser(email); // read users array
+
         // passing array list to the adapter
 
         commentAdapter = new OwnCommentAdapter(commentView, this);
@@ -32,5 +34,13 @@ public class OwnComment extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         commentRV.setLayoutManager(linearLayoutManager);
         commentRV.setAdapter(commentAdapter);
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent intent = new Intent(this, OwnComment.class);
+        intent.putExtra("email" , email);
+        startActivity(intent);
+        finish();
     }
 }

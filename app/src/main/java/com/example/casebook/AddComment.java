@@ -13,8 +13,9 @@ public class AddComment extends AppCompatActivity {
 
     private EditText comment;
     private TextView welcome;
-    private Button ShowOwnComment, ShowComment, ShowUsers,sharp;
+    private Button ShowOwnComment, ShowComment, ShowUsers,sharp, Account;
     private database dbr;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +24,20 @@ public class AddComment extends AppCompatActivity {
         comment = findViewById(R.id.commentTxt);
         sharp = findViewById(R.id.postt);
         welcome = findViewById(R.id.welcome);
+
         dbr = new database(AddComment.this);
-        String email = getIntent().getStringExtra("email");
+        email = getIntent().getStringExtra("email");
         Users users = dbr.getUserByEmail(email);
         String name = users.name; //GETS NAME
+        welcome.setText("Welcome " + name + "!");
 
         ShowUsers = findViewById(R.id.ShowUsers);
         ShowComment = findViewById(R.id.ShowComment);
         ShowOwnComment = findViewById(R.id.showOwnComment);
-        welcome.setText("Welcome " + name + "!");
+        Account = findViewById(R.id.Account);
+        Account.setOnClickListener(view -> {
+            account(email);
+        });
         sharp.setOnClickListener(view -> {
             String cmt = comment.getText().toString();
             dbr.addComment(cmt, email);
@@ -56,6 +62,12 @@ public class AddComment extends AppCompatActivity {
         });
     }
 
+    private void account(String email) {
+        Intent intent = new Intent (this, Account.class);
+        intent.putExtra("email" , email);
+        startActivity(intent);
+    }
+
     private void allComment(String email) {
         Intent intent = new Intent (this, show_comment.class);
         intent.putExtra("email" , email);
@@ -77,5 +89,14 @@ public class AddComment extends AppCompatActivity {
         Intent intent = new Intent(this, show_comment.class); // changes activity to ShowUser
         intent.putExtra("email" , email);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent intent = new Intent(this, AddComment.class);
+        intent.putExtra("email" , email);
+        startActivity(intent);
+        finish();
     }
 }
