@@ -42,6 +42,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> { 
         holder.remove.setOnClickListener(view -> { //REMOVE USERS
             database.DeleteCommentofUser(set.email); //TODO:: Delete comment with deletation of user
             database.DeleteUsers(set.getEmail());
+            ((ShowUsers)context).onRestart();
         });
     }
 
