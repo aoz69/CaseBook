@@ -36,7 +36,7 @@ public class ShowUsers extends AppCompatActivity {
         userRV.setAdapter(userAdapter);
     }
     @Override
-    protected void onRestart() {
+    protected void onRestart() { //restarts activity
         super.onRestart();
         Intent intent = new Intent(this, ShowUsers.class);
         intent.putExtra("email" , email);

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class comment_list extends AppCompatActivity {
     String email;
-
+//java of activity for displaying Comment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -37,9 +37,9 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 dbr.addUsers(email , name , password);
                 Toast.makeText(RegisterActivity.this, "New User Registered", Toast.LENGTH_SHORT).show();
-                emailreg.setText("");
-                namereg.setText("");
-                passwordreg.setText("");
+                emailreg.setText(""); //for making text box empty
+                namereg.setText("");//for making text box empty
+                passwordreg.setText("");//for making text box empty
             }
         });
 

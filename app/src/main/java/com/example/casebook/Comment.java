@@ -7,7 +7,7 @@ public class Comment {
     private Users user;
     private int id;
     private String date;
-
+//Comment setter and getters for comment,date, comment id and name
     public String getComment() {
         return comment;
     }

@@ -34,7 +34,7 @@ public class show_comment extends AppCompatActivity {
         //layout manager
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         commentRV.setLayoutManager(linearLayoutManager);
-        commentRV.setAdapter(commentAdapter);
+        commentRV.setAdapter(commentAdapter); //uses commentAdapter as adapter
     }
 
 }

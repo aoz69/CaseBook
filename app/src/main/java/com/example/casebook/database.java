@@ -14,16 +14,19 @@ public class database extends SQLiteOpenHelper {
 
     public database(Context context) {
         super(context, "dpapp", null, 1);
-    }
+    } //database name and version declared
 
     @Override
     public void onCreate(SQLiteDatabase db){
+        //query for creating table named USERS with name,email,password and dates as attribute, email being primary key
         String q = " CREATE TABLE USERS (Name TEXT ,Email TEXT primary key ,Password TEXT , Date TEXT, UDate TEXT)";
+        //query for creating table named COMMENT with id,comment,date,name and email being foreign key
         String qu = " CREATE TABLE COMMENT (ID INTEGER primary key , Comment TEXT,Date TEXT, Email TEXT,Date TEXT, UDate TEXT ,FOREIGN KEY(Email) REFERENCES USERS(Email))";
-        db.execSQL(q);
-        db.execSQL(qu);
+        db.execSQL(q); //run q query
+        db.execSQL(qu);//run qu query
     }
 
+    //for adding new users
     public void addUsers(String email, String name , String password){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues data = new ContentValues();
@@ -32,14 +35,14 @@ public class database extends SQLiteOpenHelper {
         if (getUserByEmail(email) !=null ){ //CHECK EMAIL EXISTS before adding!!!
             return;
         }
-        data.put("Email" , email);
-        data.put("Name" , name);
-        data.put("Password" , password);
-        data.put("Date" , date);
-        database.insert("USERS" , null , data);
-        database.close();
+        data.put("Email" , email); //puts values in database table for email
+        data.put("Name" , name);//puts values in database table for name
+        data.put("Password" , password);//puts values in database table for password
+        data.put("Date" , date);//puts values in database table for date
+        database.insert("USERS" , null , data); //runs insert query to add those data in table
+        database.close(); //closes database
     }
-
+    //for updating existing users
     public void UpdateUsers(String email, String name , String password){ //update User
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues data = new ContentValues();
@@ -48,17 +51,16 @@ public class database extends SQLiteOpenHelper {
         data.put("Name" , name);
         data.put("Password" , password);
         data.put("UDate" , date);
-        database.update("USERS" , data , "email =?" , new String[]{email});
+        database.update("USERS" , data , "email =?" , new String[]{email});//runs update query to update those data in table whose email matches
         database.close();
     }
-
+    //for deleting users
     public void DeleteUsers(String email){ // delete users
         SQLiteDatabase database = this.getWritableDatabase();
-       /** DeleteCommentofUser(email); // deletes user comment also**/
-        database.delete("USERS" , "email = ?" , new String[] {email});
+        database.delete("USERS" , "email = ?" , new String[] {email});//runs delete query to delete all data of the selected id
         database.close();
     }
-
+    //for adding new comment
     public void addComment(String comment, String email){
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues data = new ContentValues();
@@ -72,14 +74,13 @@ public class database extends SQLiteOpenHelper {
     }
 
     public ArrayList<Comment> getCommentByUser(String email){
-        SQLiteDatabase database = this.getWritableDatabase();
+        SQLiteDatabase database = this.getWritableDatabase(); //to write data in out database
         //cursor for reading the data
-        Cursor cmtCur = database.rawQuery("SELECT * FROM COMMENT WHERE email =?", new String[]{email});
+        Cursor cmtCur = database.rawQuery("SELECT * FROM COMMENT WHERE email =?", new String[]{email}); //selects table row with email we want
 
         //creates a new array
         ArrayList<Comment> commentArrayList = parseCommentData(cmtCur);
         return commentArrayList; // returns user array list that we created above
-
     }
 
     public void UpdateComment(int id,String comment){ //update comment
@@ -98,7 +99,7 @@ public class database extends SQLiteOpenHelper {
 
    public void DeleteCommentofUser(String email){ // delete comment
         SQLiteDatabase database = this.getWritableDatabase();
-        database.delete("COMMENT" , "email = ?" , new String[] {email});
+        database.delete("COMMENT" , "email = ?" , new String[] {email});//deletes comments of specific users
         database.close();
     }
 
@@ -139,26 +140,18 @@ public class database extends SQLiteOpenHelper {
         }
     }
 
-    /**
-     *
-     * @param userCur
-     * @return array list of users from that cursor
-     *  USE THIS METHOD TO PARSE ALL THE DATA FROM CURSOR
-     */
-
     public ArrayList<Users> parseUserData(Cursor userCur) {
         //creates a new array
         ArrayList<Users> usersArrayList = new ArrayList<>();
-        ArrayList<Users> commentArrayList = new ArrayList<>();
 
         if(userCur.moveToFirst()){ // moves cursor to 1st place
             do{
                 usersArrayList.add(new Users(
-                        userCur.getString(0),
-                        userCur.getString(1),
-                        userCur.getString(2),
-                        userCur.getString(3),
-                        userCur.getString(4)));
+                        userCur.getString(0), //id
+                        userCur.getString(1), //name
+                        userCur.getString(2), //email
+                        userCur.getString(3), //password
+                        userCur.getString(4))); //date
             }
 
             while (userCur.moveToNext()); //moves next from 1st
@@ -191,7 +184,7 @@ public class database extends SQLiteOpenHelper {
 
     public Comment getCommentById(int id) {
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cmtCur = database.rawQuery("SELECT * FROM COMMENT WHERE id=?", new String[] {id + ""});
+        Cursor cmtCur = database.rawQuery("SELECT * FROM COMMENT WHERE id=?", new String[] {id + ""}); //gets every data of comment table who has id given as wanted
         if(cmtCur.getCount()>0){
             return parseCommentData(cmtCur).get(0);
         }

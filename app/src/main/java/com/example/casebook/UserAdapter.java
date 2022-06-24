@@ -40,7 +40,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> { 
         holder.password.setText(set.getDate() + "\n" + set.getUdate()+ "\n" +set.getPassowrd()); //set text of password
         database database= new database(context);
         holder.remove.setOnClickListener(view -> { //REMOVE USERS
-            database.DeleteCommentofUser(set.email); //TODO:: Delete comment with deletation of user
+            database.DeleteCommentofUser(set.email);
             database.DeleteUsers(set.getEmail());
             ((ShowUsers)context).onRestart();
         });
