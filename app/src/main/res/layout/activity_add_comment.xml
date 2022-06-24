@@ -4,68 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddComment">
+    tools:context=".AddComment"
+    android:background="@drawable/las">
 
 
     <Button
         android:id="@+id/showOwnComment"
-        android:layout_width="164dp"
-        android:layout_height="58dp"
-        android:text="Show Own Comment"
+        android:layout_width="65dp"
+        android:layout_height="105dp"
+        android:background="@color/white"
+        android:text="Own Comment"
+        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809" />
+        app:layout_constraintVertical_bias="0.853" />
 
     <Button
         android:id="@+id/ShowComment"
-        android:layout_width="157dp"
-        android:layout_height="53dp"
-        android:text="Show Comments"
+        android:layout_width="67dp"
+        android:layout_height="87dp"
+        android:text="Comments"
+        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintHorizontal_bias="0.386"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.936" />
+        app:layout_constraintVertical_bias="0.877" />
 
     <Button
         android:id="@+id/ShowUsers"
-        android:layout_width="157dp"
-        android:layout_height="53dp"
-        android:text="Show Users"
+        android:layout_width="70dp"
+        android:layout_height="82dp"
+        android:text="Users"
+        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintHorizontal_bias="0.621"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.936" />
+        app:layout_constraintVertical_bias="0.872" />
 
     <Button
         android:id="@+id/Account"
-        android:layout_width="157dp"
-        android:layout_height="53dp"
+        android:layout_width="60dp"
+        android:layout_height="114dp"
         android:text="Account"
+        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintHorizontal_bias="0.829"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.803" />
+        app:layout_constraintVertical_bias="0.85" />
 
     <EditText
         android:id="@+id/commentTxt"
         android:layout_width="374dp"
         android:layout_height="63dp"
         android:text=""
+        android:hint="Write new comment here....."
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintHorizontal_bias="0.729"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387" />
+        app:layout_constraintVertical_bias="0.57" />
 
     <Button
         android:id="@+id/postt"
@@ -76,35 +85,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.535" />
+        app:layout_constraintVertical_bias="0.689" />
 
     <TextView
         android:id="@+id/welcome"
-        android:layout_width="320dp"
-        android:layout_height="47dp"
+        android:layout_width="324dp"
+        android:layout_height="61dp"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <TextView
-        android:id="@+id/normal"
-        android:layout_width="320dp"
-        android:layout_height="47dp"
-        android:text="Post New Comment"
-        android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.261" />
+        app:layout_constraintVertical_bias="0.222" />
+
+    <TextView
+        android:id="@+id/normal"
+        android:layout_width="356dp"
+        android:layout_height="55dp"
+        android:text="Post New Comment"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.276" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
